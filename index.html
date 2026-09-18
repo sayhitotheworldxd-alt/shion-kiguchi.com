@@ -170,6 +170,26 @@
   ul.bullets li{font-size:0.96rem;color:var(--muted-onink);padding-left:20px;position:relative;line-height:1.6;}
   ul.bullets li::before{content:"—";position:absolute;left:0;color:var(--accent);}
 
+  .role-summary{font-size:1.02rem;color:var(--cream);line-height:1.55;max-width:640px;margin-top:2px;}
+  .chip-row{display:flex;flex-wrap:wrap;gap:10px;margin:18px 0 4px;}
+  .stat-chip{
+    font-size:0.76rem;letter-spacing:0.03em;padding:6px 14px;border-radius:999px;
+    color:var(--cream);border:1px solid rgba(163,183,187,0.35);
+  }
+  .stat-chip.blue{border-color:rgba(13,134,201,0.55);}
+  .stat-chip.green{border-color:rgba(18,163,115,0.55);}
+
+  details.chapter-detail{margin-top:14px;}
+  details.chapter-detail summary{
+    cursor:pointer;list-style:none;font-family:'Bodoni Moda',serif;font-style:italic;
+    font-size:0.92rem;color:var(--accent);display:inline-flex;align-items:center;gap:8px;
+  }
+  details.chapter-detail summary::-webkit-details-marker{display:none;}
+  details.chapter-detail summary::after{content:"\2192";transition:transform .25s ease;display:inline-block;}
+  details.chapter-detail[open] summary::after{transform:rotate(90deg);}
+  details.chapter-detail[open] summary{margin-bottom:16px;}
+  details.chapter-detail ul.bullets{padding-top:2px;}
+
   /* highlights bold list, echoing the "related work" list treatment */
   .highlight-list{border-top:1px solid rgba(23,20,15,0.18);}
   .highlight-row{
@@ -239,9 +259,10 @@
       <ol>
         <li><span class="n">01.</span><a href="#top" data-close>Home</a></li>
         <li><span class="n">02.</span><a href="#about" data-close>About</a></li>
-        <li><span class="n">03.</span><a href="#experience" data-close>Experience</a></li>
-        <li><span class="n">04.</span><a href="#education" data-close>Education</a></li>
-        <li><span class="n">05.</span><a href="#connect" data-close>Contact</a></li>
+        <li><span class="n">03.</span><a href="#journey" data-close>Journey</a></li>
+        <li><span class="n">04.</span><a href="#experience" data-close>Experience</a></li>
+        <li><span class="n">05.</span><a href="#education" data-close>Education</a></li>
+        <li><span class="n">06.</span><a href="#connect" data-close>Contact</a></li>
       </ol>
       <div class="social">
         <a href="mailto:shion_kiguchi@berkeley.edu">Email</a>
@@ -304,6 +325,43 @@
       </div>
     </section>
 
+    <section id="journey" class="dark">
+      <div class="wrap reveal">
+        <span class="kicker">— The Journey</span>
+        <h2 class="display" style="color:var(--cream);">From Nara to Berkeley, by way of Tokyo.</h2>
+      </div>
+      <div class="wrap reveal" style="margin-top:56px;">
+        <svg viewBox="0 0 1000 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <path d="M40,190 C160,60 260,230 380,110 C480,10 560,190 660,90 C760,10 840,150 950,70"
+                fill="none" stroke="#0d86c9" stroke-width="2.5" stroke-dasharray="1.5 9" stroke-linecap="round"/>
+          <g font-family="Inter, sans-serif">
+            <circle cx="40" cy="190" r="9" fill="#0d86c9" stroke="#10161a" stroke-width="3"/>
+            <text x="40" y="224" font-size="13" font-weight="700" text-anchor="middle" fill="#eef1ee">Nara</text>
+            <text x="40" y="240" font-size="10.5" text-anchor="middle" fill="#a3b7bb">Med school, 2019</text>
+
+            <circle cx="380" cy="110" r="9" fill="#12a373" stroke="#10161a" stroke-width="3"/>
+            <text x="380" y="80" font-size="13" font-weight="700" text-anchor="middle" fill="#eef1ee">Chiba</text>
+            <text x="380" y="64" font-size="10.5" text-anchor="middle" fill="#a3b7bb">Kameda, 2019–21</text>
+
+            <circle cx="660" cy="90" r="9" fill="#0d86c9" stroke="#10161a" stroke-width="3"/>
+            <text x="660" y="60" font-size="13" font-weight="700" text-anchor="middle" fill="#eef1ee">Tokyo / Kanagawa</text>
+            <text x="660" y="130" font-size="10.5" text-anchor="middle" fill="#a3b7bb">Residency, 2021–22</text>
+
+            <circle cx="800" cy="130" r="9" fill="#12a373" stroke="#10161a" stroke-width="3"/>
+            <text x="800" y="164" font-size="13" font-weight="700" text-anchor="middle" fill="#eef1ee">Tokyo</text>
+            <text x="800" y="180" font-size="10.5" text-anchor="middle" fill="#a3b7bb">Pfizer, 2022–26</text>
+
+            <circle cx="950" cy="70" r="11" fill="#eef1ee" stroke="#0d86c9" stroke-width="3"/>
+            <text x="950" y="40" font-size="14" font-weight="700" text-anchor="middle" fill="#eef1ee">Berkeley</text>
+            <text x="950" y="105" font-size="11" text-anchor="middle" fill="#a3b7bb">Haas MBA, 2026–28</text>
+          </g>
+        </svg>
+      </div>
+      <div class="wrap reveal" style="margin-top:8px;">
+        <p style="color:var(--muted-onink);font-size:0.92rem;max-width:560px;">Clinical practice across three Japanese hospitals, four years in global pharmaceutical R&amp;D, and now business school in California.</p>
+      </div>
+    </section>
+
     <section id="experience" class="dark">
       <div class="wrap reveal">
         <span class="kicker">— Where I've Worked</span>
@@ -317,20 +375,38 @@
           <div class="loc">Tokyo, Japan — 2022–2026</div>
 
           <div class="role">Japan Clinical Lead, Inflammatory &amp; Immunology, R&amp;D (2025–2026)</div>
-          <ul class="bullets">
-            <li>Sole Medical Affairs secondee to R&amp;D as Japan Clinical Lead, directing 7 global clinical trials in dermatology and respiratory — from early Phase 1 through pre-submission Phase 3 — leading 15-person cross-functional teams with zero missed milestones.</li>
-            <li>Directed Phase 1 strategy for 3 pipelines in rheumatoid arthritis and lupus while concurrently leading a Phase 2 trial and Phase 3 site strategy for a first-in-class trispecific antibody spanning two therapeutic areas, including entry into a new asthma/COPD market; advanced the program to full Phase 3 launch.</li>
-            <li>Led Phase 3 planning and cross-functional approval strategy to expand a post-marketed alopecia areata therapy into a new patient population as Medical Affairs product lead, keeping global Medical Affairs and R&amp;D strategy aligned.</li>
-            <li>Partnered with global R&amp;D to analyze a multi-site trial, identified a clinician-vs-company reporting discrepancy, and redesigned the assessment protocol to restore data integrity across all sites in Japan.</li>
-          </ul>
+          <p class="role-summary">Directed 7 global clinical trials across dermatology and respiratory — from early Phase 1 through pre-submission Phase 3 — with zero missed milestones.</p>
+          <div class="chip-row">
+            <span class="stat-chip blue">7 Trials</span>
+            <span class="stat-chip green">15-Person Teams</span>
+            <span class="stat-chip blue">Zero Missed Milestones</span>
+          </div>
+          <details class="chapter-detail">
+            <summary>Read the full chapter</summary>
+            <ul class="bullets">
+              <li>Sole Medical Affairs secondee to R&amp;D as Japan Clinical Lead, directing 7 global clinical trials in dermatology and respiratory — from early Phase 1 through pre-submission Phase 3 — leading 15-person cross-functional teams through daily execution and issue resolution; zero missed milestones across trials.</li>
+              <li>Directed Phase 1 strategy for 3 pipelines in rheumatoid arthritis and lupus while concurrently leading a Phase 2 trial and Phase 3 site strategy for a first-in-class trispecific antibody spanning two therapeutic areas, including entry into a new asthma/COPD market; advanced the program to full Phase 3 launch.</li>
+              <li>Led Phase 3 planning and cross-functional approval strategy to expand a post-marketed alopecia areata therapy into a new patient population as Medical Affairs product lead, keeping global Medical Affairs and R&amp;D strategy aligned.</li>
+              <li>Partnered with global R&amp;D to analyze a multi-site trial, identified a clinician-vs-company reporting discrepancy, and redesigned the assessment protocol to restore data integrity across all sites in Japan.</li>
+            </ul>
+          </details>
 
-          <div class="role">Medical Affairs Scientist, Product Education &amp; Medical Strategy, Dermatology Division (2022–2026)</div>
-          <ul class="bullets">
-            <li>Sole product lead and Medical Doctor representative on drug development, providing clinical insight for Phase 2/3 trial design and market strategy alongside R&amp;D and commercial teams as the youngest of 15+ senior stakeholders.</li>
-            <li>Restructured the team operating model to drive ownership and data-driven execution — cut meeting time 50%, tripled project output, and contributed to a $7.6M annual strategic plan.</li>
-            <li>Co-led a 7-person digital transformation initiative with the Tech team, redesigning AI adoption strategy for a 40-person division — driving a 500% increase in AI usage and 1+ hour/person/day in time savings, later presented as Pfizer Japan's case study to global AI leadership.</li>
-            <li>Drove medical launch strategy for a first-in-class drug with $1B+ revenue potential, briefing 30+ sales representatives and leading stakeholder engagement across 5 university formulary committees to accelerate early market adoption.</li>
-          </ul>
+          <div class="role" style="margin-top:36px;">Medical Affairs Scientist, Product Education &amp; Medical Strategy, Dermatology Division (2022–2026)</div>
+          <p class="role-summary">Restructured team execution and led AI adoption for a 40-person division — cutting meeting time 50% while tripling project output.</p>
+          <div class="chip-row">
+            <span class="stat-chip green">$7.6M Strategic Plan</span>
+            <span class="stat-chip blue">500% AI Adoption</span>
+            <span class="stat-chip green">Tripled Output</span>
+          </div>
+          <details class="chapter-detail">
+            <summary>Read the full chapter</summary>
+            <ul class="bullets">
+              <li>Sole product lead and Medical Doctor representative on drug development, providing clinical insight for Phase 2/3 trial design and market strategy alongside R&amp;D and commercial teams as the youngest of 15+ senior stakeholders.</li>
+              <li>Restructured the team operating model to drive ownership and data-driven execution — cut meeting time 50%, tripled project output, and contributed to a $7.6M annual strategic plan.</li>
+              <li>Co-led a 7-person digital transformation initiative with the Tech team, redesigning AI adoption strategy for a 40-person division — driving a 500% increase in AI usage and 1+ hour/person/day in time savings, later presented as Pfizer Japan's case study to global AI leadership.</li>
+              <li>Drove medical launch strategy for a first-in-class drug with $1B+ revenue potential, briefing 30+ sales representatives and leading stakeholder engagement across 5 university formulary committees to accelerate early market adoption.</li>
+            </ul>
+          </details>
         </div>
 
         <div class="chapter reveal">
@@ -338,10 +414,18 @@
           <h3>The University of Tokyo / St. Marianna University Hospital</h3>
           <div class="loc">Tokyo / Kanagawa, Japan — 2021–2022</div>
           <div class="role">Senior Resident, Plastic &amp; Reconstructive Surgery</div>
-          <ul class="bullets">
-            <li>Selected as lead surgeon for infant foot reconstruction — typically reserved for residents with 3+ years of experience — as the only first-year resident among four, based on technical precision, calm decision-making, and emergency management.</li>
-            <li>Identified a patient-safety gap from inconsistent ward documentation; designed and drove full adoption of a new charting system across 10 senior physicians, improving overall inpatient safety compliance.</li>
-          </ul>
+          <p class="role-summary">Selected as lead surgeon for infant foot reconstruction as the only first-year resident among four, based on technical precision and calm decision-making.</p>
+          <div class="chip-row">
+            <span class="stat-chip green">Only 1st-Year Selected</span>
+            <span class="stat-chip blue">10 Physicians Onboarded</span>
+          </div>
+          <details class="chapter-detail">
+            <summary>Read the full chapter</summary>
+            <ul class="bullets">
+              <li>Selected as lead surgeon for infant foot reconstruction — typically reserved for residents with 3+ years of experience — as the only first-year resident among four, based on technical precision, calm decision-making, and emergency management.</li>
+              <li>Identified a patient-safety gap from inconsistent ward documentation; designed and drove full adoption of a new charting system across 10 senior physicians, improving overall inpatient safety compliance.</li>
+            </ul>
+          </details>
         </div>
 
         <div class="chapter reveal">
@@ -349,32 +433,18 @@
           <h3>Kameda Medical Center</h3>
           <div class="loc">Chiba, Japan — 2019–2021</div>
           <div class="role">Junior Resident, Surgery Program</div>
-          <ul class="bullets">
-            <li>Led a frontline 15-person ER team during a one-month rotation, managing 8+ ambulances and 20 walk-in cases daily in a high-pressure, resource-limited environment serving a population of 110,000.</li>
-            <li>Mentored 25 first-year junior residents, tailoring guidance to individual needs and supporting their growth into capable physicians.</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="wrap reveal" style="margin-top:70px;">
-        <span class="kicker">— By The Numbers</span>
-        <div class="highlight-list">
-          <div class="highlight-row">
-            <span class="stat serif" style="color:var(--cream);">7 Trials</span>
-            <span class="desc">Global clinical trials led across dermatology, respiratory, and immunology.</span>
+          <p class="role-summary">Led a 15-person frontline ER team providing emergency care for a population of 110,000, and mentored 25 first-year residents.</p>
+          <div class="chip-row">
+            <span class="stat-chip blue">110K Population Served</span>
+            <span class="stat-chip green">25 Residents Mentored</span>
           </div>
-          <div class="highlight-row">
-            <span class="stat serif" style="color:var(--cream);">$7.6M</span>
-            <span class="desc">Annual strategic plan shaped through a restructured operating model.</span>
-          </div>
-          <div class="highlight-row">
-            <span class="stat serif" style="color:var(--cream);">500%</span>
-            <span class="desc">Increase in AI adoption across a 40-person division.</span>
-          </div>
-          <div class="highlight-row">
-            <span class="stat serif" style="color:var(--cream);">Zero</span>
-            <span class="desc">Missed milestones across 7 concurrent global trials.</span>
-          </div>
+          <details class="chapter-detail">
+            <summary>Read the full chapter</summary>
+            <ul class="bullets">
+              <li>Led a frontline 15-person ER team during a one-month rotation, managing 8+ ambulances and 20 walk-in cases daily in a high-pressure, resource-limited environment serving a population of 110,000.</li>
+              <li>Mentored 25 first-year junior residents, tailoring guidance to individual needs and supporting their growth into capable physicians.</li>
+            </ul>
+          </details>
         </div>
       </div>
     </section>
