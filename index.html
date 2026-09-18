@@ -7,444 +7,443 @@
 <meta name="description" content="Shion Kiguchi — Physician, Global Medical Affairs Leader, MBA Candidate at UC Berkeley Haas School of Business." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..700;1,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --yellow:#f3c34a;
-    --yellow-deep:#e2a530;
-    --coral:#f3a17c;
-    --coral-deep:#eb8a5c;
-    --pink:#f4c7cc;
-    --pink-deep:#e79aa2;
-    --cream:#fbf3e7;
-    --paper:#fffaf1;
-    --ink:#221b12;
-    --ink-soft:#4b4030;
-    --line:rgba(34,27,18,0.12);
+    --ink:#17140f;
+    --ink-soft:#211c15;
+    --cream:#f3ede2;
+    --cream-2:#e9e0cf;
+    --accent:#b1503a;
+    --muted:#8a8378;
+    --muted-onink:#a79f8f;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
-  html{scroll-behavior:smooth;}
+  html,body{height:100%;}
   body{
     font-family:'Inter',system-ui,sans-serif;
+    background:#000;
     color:var(--ink);
-    background:var(--paper);
-    line-height:1.6;
     -webkit-font-smoothing:antialiased;
-    padding-right:64px;
+    overflow:hidden;
   }
-  h1,h2,h3{font-family:'Fredoka',sans-serif;font-weight:600;letter-spacing:-0.01em;}
-  a{color:inherit;}
-  .wrap{max-width:960px;margin:0 auto;padding:0 28px;}
-  .band{position:relative;overflow:hidden;padding:88px 0;}
-  .band.tight{padding:64px 0;}
+  .serif{font-family:'Bodoni Moda',serif;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:900px;margin:0 auto;padding:0 40px;}
 
-  /* highlighter mark */
-  .mark{
-    background:linear-gradient(105deg, transparent 0%, var(--yellow) 6%, var(--yellow) 94%, transparent 100%);
-    padding:2px 6px;border-radius:2px;
+  /* nav-toggle checkbox hack */
+  #nav-toggle{display:none;}
+
+  .book{
+    display:flex;height:100vh;margin:12px;border-radius:18px;overflow:hidden;
+    box-shadow:0 40px 80px rgba(0,0,0,0.55);
   }
-  .mark.pink{background:linear-gradient(105deg, transparent 0%, var(--pink-deep) 6%, var(--pink-deep) 94%, transparent 100%);}
-
-  a.readmore{
-    display:inline-flex;align-items:center;gap:6px;
-    font-weight:600;color:var(--ink);text-decoration:underline;
-    background:linear-gradient(105deg, transparent 0%, var(--yellow) 6%, var(--yellow) 94%, transparent 100%);
-    padding:3px 8px;border-radius:2px;
-  }
-
-  /* Vertical side nav */
-  .side-nav{
-    position:fixed;top:0;right:0;height:100vh;width:64px;
-    background:var(--yellow);z-index:80;
+  .spine{
+    width:64px;flex-shrink:0;background:var(--ink);
     display:flex;flex-direction:column;align-items:center;justify-content:space-between;
-    padding:26px 0;border-left:2px solid var(--ink);
+    padding:22px 0;position:relative;z-index:40;
   }
-  .side-nav .brand-mark{
-    font-family:'Fredoka',sans-serif;font-weight:700;font-size:1rem;
-    writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);
-    color:var(--ink);
-  }
-  .side-nav nav{display:flex;flex-direction:column;gap:28px;align-items:center;}
-  .side-nav nav a{
-    writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);
-    font-weight:600;font-size:0.92rem;text-decoration:none;color:var(--ink);
-    letter-spacing:0.02em;
-  }
-  .side-nav nav a:hover{color:#fff;}
-  @media (max-width:760px){
-    body{padding-right:0;}
-    .side-nav{display:none;}
-    .top-nav-mobile{display:flex;}
-  }
-  .top-nav-mobile{
-    display:none;position:sticky;top:0;z-index:70;background:var(--yellow);
-    border-bottom:2px solid var(--ink);padding:14px 20px;gap:18px;
-    font-weight:600;font-size:0.85rem;overflow-x:auto;
-  }
-  .top-nav-mobile a{text-decoration:none;color:var(--ink);white-space:nowrap;}
+  .hamburger-label{cursor:pointer;display:flex;flex-direction:column;gap:5px;padding:6px;}
+  .hamburger-label span{width:20px;height:2px;background:var(--cream);display:block;transition:transform .25s ease, opacity .25s ease;}
+  #nav-toggle:checked ~ .book .hamburger-label span:nth-child(1){transform:translateY(7px) rotate(45deg);}
+  #nav-toggle:checked ~ .book .hamburger-label span:nth-child(2){opacity:0;}
+  #nav-toggle:checked ~ .book .hamburger-label span:nth-child(3){transform:translateY(-7px) rotate(-45deg);}
 
-  .draft-flag{
-    background:var(--ink);color:var(--yellow);text-align:center;
-    font-size:0.78rem;font-weight:600;padding:6px 12px;letter-spacing:0.04em;
-    position:relative;z-index:90;
+  .spine .brand{
+    writing-mode:vertical-rl;transform:rotate(180deg);
+    font-size:0.75rem;letter-spacing:0.12em;color:var(--muted-onink);text-transform:uppercase;
+    display:flex;flex-direction:column;align-items:center;gap:14px;
   }
+  .spine .brand strong{color:var(--cream);font-weight:600;}
 
-  /* doodle clouds */
-  .cloud{position:absolute;opacity:0.9;pointer-events:none;}
+  .main{flex:1;overflow-y:auto;scroll-behavior:smooth;-webkit-overflow-scrolling:touch;position:relative;}
+
+  /* full-screen overlay nav */
+  .overlay{
+    position:absolute;inset:0;background:var(--ink);z-index:60;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:0 64px;transform:translateY(-8px);opacity:0;pointer-events:none;
+    transition:opacity .35s ease, transform .35s ease;
+  }
+  #nav-toggle:checked ~ .book .overlay{opacity:1;pointer-events:all;transform:translateY(0);}
+  .overlay .close{
+    position:absolute;top:28px;right:40px;font-size:0.8rem;letter-spacing:0.1em;
+    text-transform:uppercase;color:var(--cream);cursor:pointer;
+  }
+  .overlay ol{list-style:none;}
+  .overlay li{display:flex;align-items:baseline;gap:26px;}
+  .overlay li .n{
+    font-family:'Bodoni Moda',serif;font-size:1.1rem;color:var(--muted-onink);
+  }
+  .overlay li a{
+    font-family:'Bodoni Moda',serif;font-weight:600;font-size:clamp(2.4rem,7vw,4.5rem);
+    color:var(--muted-onink);line-height:1.25;transition:color .2s ease;
+  }
+  .overlay li a:hover{color:var(--cream);}
+  .overlay li:first-child a{color:var(--cream);}
+  .overlay .social{
+    position:absolute;bottom:30px;left:64px;display:flex;gap:24px;
+    font-size:0.85rem;color:var(--muted-onink);
+  }
+  .overlay .social a:hover{color:var(--cream);}
+
+  /* section shells */
+  section{position:relative;padding:110px 0;}
+  section.dark{background:var(--ink);color:var(--cream);}
+  section.light{background:var(--cream);color:var(--ink);}
+  section.light.alt{background:var(--cream-2);}
+
+  .kicker{
+    display:block;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--muted);margin-bottom:18px;
+  }
+  section.dark .kicker{color:var(--muted-onink);}
 
   /* Hero */
-  .hero{background:var(--coral);padding-top:70px;}
-  .hero .eyebrow{
-    display:inline-block;font-weight:600;font-size:0.8rem;letter-spacing:0.1em;
-    text-transform:uppercase;color:var(--ink);background:rgba(255,255,255,0.55);
-    padding:6px 14px;border-radius:999px;margin-bottom:22px;
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:0;}
+  .hero .top-row{
+    position:absolute;top:34px;right:48px;display:flex;gap:28px;font-size:0.85rem;
   }
-  .hero h1{font-size:clamp(2.6rem,7vw,4.4rem);color:var(--ink);margin-bottom:20px;line-height:1.02;}
-  .hero p.tagline{font-size:1.15rem;color:var(--ink-soft);max-width:600px;margin-bottom:30px;}
-  .hero-links{display:flex;flex-wrap:wrap;gap:14px;align-items:center;}
-  .pill{
-    display:inline-flex;align-items:center;gap:8px;
-    background:var(--ink);color:var(--paper);
-    padding:10px 18px;border-radius:999px;font-size:0.9rem;font-weight:600;
-    text-decoration:none;
+  .hero .top-row a{border-bottom:1px solid transparent;}
+  .hero .top-row a:hover{border-color:var(--cream);}
+  .hero h1{
+    font-size:clamp(3.4rem,10vw,7.5rem);line-height:0.98;font-weight:600;
+    color:var(--cream);padding-left:56px;
   }
-  .pill:hover{background:#000;}
+  .hero h1 em{font-style:italic;color:var(--accent);}
+  .hero .bottom-row{
+    position:absolute;bottom:34px;left:56px;right:48px;
+    display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;
+  }
+  .hero .contact-block .label{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted-onink);margin-bottom:8px;display:block;}
+  .hero .contact-block a{font-size:1.1rem;border-bottom:1px solid var(--muted-onink);}
+  .hero .contact-block a:hover{border-color:var(--cream);}
+  .hero .tagline{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted-onink);text-align:right;max-width:220px;}
 
-  .sticker{
-    position:absolute;width:118px;height:118px;
-    background:var(--yellow);border:2px solid var(--ink);
-    display:flex;align-items:center;justify-content:center;text-align:center;
-    font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.95rem;color:var(--ink);
-    clip-path:polygon(50% 0%,61% 12%,75% 2%,80% 18%,95% 12%,90% 28%,100% 38%,86% 46%,96% 60%,80% 62%,84% 78%,68% 72%,64% 88%,52% 76%,40% 92%,32% 76%,16% 82%,22% 64%,4% 62%,16% 48%,2% 36%,18% 30%,12% 12%,28% 18%,34% 2%);
-    transform:rotate(8deg);
-    line-height:1.15;
-  }
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in-view{opacity:1;transform:translateY(0);}
 
-  /* Section headings */
-  .section-head{margin-bottom:34px;}
-  .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);}
-  .section-head .kicker{
-    display:block;font-family:'Inter',sans-serif;font-weight:700;font-size:0.75rem;
-    letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;
+  /* capabilities grid (four columns, echoing numbered category panels) */
+  .cap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid rgba(23,20,15,0.15);}
+  section.dark .cap-grid{border-top:1px solid rgba(243,237,226,0.18);}
+  .cap{padding:34px 26px 0;border-right:1px solid rgba(23,20,15,0.15);min-height:220px;}
+  section.dark .cap{border-right:1px solid rgba(243,237,226,0.18);}
+  .cap:last-child{border-right:none;}
+  .cap .num{font-family:'Bodoni Moda',serif;font-size:2.2rem;color:var(--accent);}
+  .cap h3{font-family:'Bodoni Moda',serif;font-weight:600;font-size:1.15rem;margin:26px 0 12px;letter-spacing:0.01em;}
+  .cap p{font-size:0.88rem;color:var(--muted);line-height:1.55;}
+  @media (max-width:820px){
+    .cap-grid{grid-template-columns:1fr 1fr;}
+    .cap{border-bottom:1px solid rgba(23,20,15,0.15);padding-bottom:26px;min-height:auto;}
   }
+  @media (max-width:520px){ .cap-grid{grid-template-columns:1fr;} }
 
-  .band.about{background:var(--pink);}
-  .about-grid{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:start;}
-  @media (max-width:760px){ .about-grid{grid-template-columns:1fr;} }
-  .about-text p{font-size:1.05rem;color:var(--ink-soft);margin-bottom:14px;max-width:520px;}
-  .doodle-card{
-    background:var(--paper);border:2px solid var(--ink);border-radius:18px;
-    padding:22px 24px;transform:rotate(-2deg);box-shadow:6px 6px 0 var(--ink);
-  }
-  .doodle-card h3{font-size:1.05rem;margin-bottom:10px;}
-  .doodle-card ul{padding-left:18px;font-size:0.92rem;color:var(--ink-soft);display:grid;gap:6px;}
+  h2.display{font-family:'Bodoni Moda',serif;font-weight:600;font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;max-width:760px;}
 
-  /* Journey map */
-  .band.journey{background:var(--cream);}
-  .journey svg{width:100%;height:auto;display:block;}
-  .journey-caption{margin-top:18px;font-size:0.9rem;color:var(--ink-soft);text-align:center;}
+  /* chapters (experience) */
+  .chapter{padding:70px 0;border-top:1px solid rgba(243,237,226,0.15);}
+  .chapter:first-of-type{border-top:none;padding-top:0;}
+  .chapter .chap-label{font-family:'Bodoni Moda',serif;font-style:italic;font-size:1rem;color:var(--accent);margin-bottom:10px;}
+  .chapter h3{font-family:'Bodoni Moda',serif;font-weight:600;font-size:clamp(1.6rem,3.6vw,2.3rem);margin-bottom:6px;}
+  .chapter .loc{color:var(--muted-onink);font-size:0.92rem;}
+  .chapter .role{
+    text-transform:uppercase;letter-spacing:0.06em;font-size:0.82rem;font-weight:600;
+    color:var(--cream);margin:26px 0 12px;
+  }
+  ul.bullets{list-style:none;display:grid;gap:12px;}
+  ul.bullets li{font-size:0.96rem;color:var(--muted-onink);padding-left:20px;position:relative;line-height:1.6;}
+  ul.bullets li::before{content:"—";position:absolute;left:0;color:var(--accent);}
 
-  /* Experience */
-  .band.experience{background:var(--yellow);}
-  .job-card{
-    background:var(--paper);border:2px solid var(--ink);border-radius:18px;
-    padding:30px 32px;margin-bottom:30px;position:relative;
+  /* highlights bold list, echoing the "related work" list treatment */
+  .highlight-list{border-top:1px solid rgba(23,20,15,0.18);}
+  .highlight-row{
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:22px 0;border-bottom:1px solid rgba(23,20,15,0.18);gap:20px;flex-wrap:wrap;
   }
-  .job-card:last-child{margin-bottom:0;}
-  .tape{
-    position:absolute;top:-16px;left:28px;background:var(--coral);
-    border:2px solid var(--ink);color:var(--ink);font-weight:700;font-size:0.85rem;
-    padding:6px 16px;border-radius:6px;transform:rotate(-3deg);
-  }
-  .job-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px;margin-top:14px;margin-bottom:4px;}
-  .job-org{font-family:'Fredoka',sans-serif;font-size:1.25rem;font-weight:600;}
-  .job-org .loc{font-family:'Inter',sans-serif;font-weight:400;color:var(--ink-soft);font-size:0.92rem;}
-  .role{font-weight:700;font-style:italic;color:var(--ink);margin:14px 0 10px;font-size:0.98rem;}
-  ul.bullets{padding-left:0;display:grid;gap:10px;list-style:none;}
-  ul.bullets li{font-size:0.95rem;color:var(--ink-soft);padding-left:22px;position:relative;}
-  ul.bullets li::before{
-    content:"";position:absolute;left:0;top:8px;width:9px;height:9px;border-radius:50%;
-    background:var(--coral-deep);
-  }
+  .highlight-row .stat{font-family:'Bodoni Moda',serif;font-weight:600;font-size:clamp(1.6rem,4vw,2.4rem);}
+  .highlight-row .desc{color:var(--muted);font-size:0.92rem;max-width:420px;text-align:right;}
 
-  /* Education */
-  .band.education{background:var(--paper);}
-  .edu-grid{display:grid;gap:24px;}
-  .edu-card{
-    background:var(--pink);border:2px solid var(--ink);border-radius:18px;
-    padding:26px 28px;position:relative;
+  /* education cards */
+  .edu-card{padding:32px 0;border-top:1px solid rgba(23,20,15,0.15);}
+  .edu-card:first-child{border-top:none;}
+  .edu-card .tag{
+    display:inline-block;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:10px;
   }
-  .edu-card:nth-child(2){background:var(--coral);}
-  .edu-badge{
-    position:absolute;top:-14px;right:24px;background:var(--ink);color:var(--yellow);
-    font-family:'Fredoka',sans-serif;font-weight:700;font-size:0.8rem;
-    padding:6px 14px;border-radius:999px;transform:rotate(4deg);
-  }
-  .degree{font-style:italic;color:var(--ink-soft);margin:6px 0 12px;font-size:0.95rem;}
+  .edu-card h3{font-family:'Bodoni Moda',serif;font-weight:600;font-size:1.4rem;}
+  .edu-card .degree{color:var(--muted);font-size:0.92rem;margin:6px 0 14px;font-style:italic;}
 
-  /* Additional / stickers */
-  .band.more{background:var(--coral);}
-  .chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;}
+  /* additional chips */
+  .chip-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:36px 40px;}
   @media (max-width:640px){ .chip-grid{grid-template-columns:1fr;} }
-  .chip{
-    background:var(--paper);border:2px solid var(--ink);border-radius:16px;
-    padding:22px 24px;box-shadow:5px 5px 0 var(--ink);
-  }
-  .chip:nth-child(2){transform:rotate(1deg);}
-  .chip:nth-child(3){transform:rotate(-1deg);}
-  .chip h3{font-family:'Inter',sans-serif;font-weight:700;font-size:0.95rem;margin-bottom:8px;}
-  .chip p{font-size:0.9rem;color:var(--ink-soft);}
+  .chip h3{font-size:0.82rem;letter-spacing:0.08em;text-transform:uppercase;font-weight:700;margin-bottom:10px;color:var(--accent);}
+  .chip p{font-size:0.92rem;color:var(--muted);line-height:1.6;}
 
-  /* Footer */
-  footer{background:var(--ink);color:var(--cream);padding:0;}
-  .footer-top{padding:70px 0 40px;text-align:center;}
-  .footer-top h2{color:var(--yellow);font-size:clamp(1.8rem,4vw,2.6rem);margin-bottom:14px;}
-  .footer-top p{color:#cfc6b6;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto;}
-  .footer-top .hero-links{justify-content:center;}
-  .footer-top .pill{background:var(--yellow);color:var(--ink);}
-  .footer-top .pill:hover{background:var(--yellow-deep);}
-  .footer-bar{
-    background:var(--yellow);color:var(--ink);padding:18px 0;
-    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;
+  /* footer */
+  .footer-hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;position:relative;}
+  .footer-hero h2{font-size:clamp(2.6rem,8vw,5rem);color:var(--cream);}
+  .footer-hero .bottom-row{
+    position:absolute;bottom:34px;left:0;right:0;display:flex;justify-content:space-between;
+    align-items:flex-end;flex-wrap:wrap;gap:16px;padding:0 8px;
   }
-  .social-row{display:flex;gap:12px;}
-  .social-circle{
-    width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--yellow);
-    display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.85rem;
-    text-decoration:none;
+  .footer-hero .social{display:flex;gap:22px;font-size:0.85rem;color:var(--muted-onink);}
+  .footer-hero .social a:hover{color:var(--cream);}
+  .footer-hero .copy{font-size:0.75rem;color:var(--muted-onink);}
+
+  @media (max-width:640px){
+    .book{margin:0;border-radius:0;height:100vh;}
+    .wrap{padding:0 24px;}
+    .hero h1{padding-left:24px;}
+    .hero .bottom-row{left:24px;right:24px;}
+    .hero .tagline{text-align:left;}
+    .overlay{padding:0 28px;}
+    .overlay .social{left:28px;}
   }
-  .footer-bar .contact-text{font-size:0.88rem;font-weight:600;}
 </style>
 </head>
 <body>
 
-<div class="draft-flag">Draft preview — redesign in progress</div>
+<input type="checkbox" id="nav-toggle">
 
-<div class="top-nav-mobile">
-  <a href="#top">Top</a>
-  <a href="#about">About</a>
-  <a href="#journey">Journey</a>
-  <a href="#experience">Experience</a>
-  <a href="#education">Education</a>
-  <a href="#more">More</a>
-  <a href="#connect">Contact</a>
+<div class="book">
+  <div class="spine">
+    <label class="hamburger-label" for="nav-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </label>
+    <div class="brand">
+      <span>Portfolio — MD / MBA</span>
+      <strong>Shion Kiguchi</strong>
+    </div>
+  </div>
+
+  <div class="main" id="scroll-area">
+
+    <nav class="overlay">
+      <label class="close" for="nav-toggle">Close</label>
+      <ol>
+        <li><span class="n">01.</span><a href="#top" data-close>Home</a></li>
+        <li><span class="n">02.</span><a href="#about" data-close>About</a></li>
+        <li><span class="n">03.</span><a href="#experience" data-close>Experience</a></li>
+        <li><span class="n">04.</span><a href="#education" data-close>Education</a></li>
+        <li><span class="n">05.</span><a href="#connect" data-close>Contact</a></li>
+      </ol>
+      <div class="social">
+        <a href="mailto:shion_kiguchi@berkeley.edu">Email</a>
+        <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </nav>
+
+    <section id="top" class="dark hero">
+      <div class="top-row">
+        <a href="mailto:shion_kiguchi@berkeley.edu">Email</a>
+        <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <h1 class="serif">Physician<br><em>&amp; Strategist</em></h1>
+      <div class="bottom-row">
+        <div class="contact-block">
+          <span class="label">Contact To</span>
+          <a href="mailto:shion_kiguchi@berkeley.edu">shion_kiguchi@berkeley.edu</a>
+        </div>
+        <div class="tagline">Where medicine meets strategy</div>
+      </div>
+    </section>
+
+    <section id="about" class="light">
+      <div class="wrap reveal">
+        <span class="kicker">— Chapter I · About</span>
+        <h2 class="display">Six years of medicine, four years of global pharma, now an MBA.</h2>
+      </div>
+      <div class="wrap reveal" style="margin-top:28px;max-width:640px;">
+        <p style="font-size:1.02rem;color:var(--muted);line-height:1.7;">Trained as a physician in Japan, Shion spent six years in clinical surgery and residency before moving into global pharmaceutical R&amp;D at Pfizer, leading cross-functional clinical trial strategy across dermatology, respiratory, and immunology. She is currently an MBA candidate at the Haas School of Business at UC Berkeley, building on a decade of clinical and pharmaceutical leadership to move into broader healthcare strategy and business roles.</p>
+      </div>
+
+      <div class="cap-grid reveal" style="margin-top:64px;">
+        <div class="cap">
+          <div class="num serif">01</div>
+          <h3>Clinical Leadership</h3>
+          <p>Surgical residency and frontline ER leadership across three Japanese hospitals.</p>
+        </div>
+        <div class="cap">
+          <div class="num serif">02</div>
+          <h3>Medical Affairs</h3>
+          <p>Sole MD product lead bridging R&amp;D, commercial, and clinical stakeholders.</p>
+        </div>
+        <div class="cap">
+          <div class="num serif">03</div>
+          <h3>Trial Strategy</h3>
+          <p>Directed Phase 1–3 strategy across 7 global trials in immunology and dermatology.</p>
+        </div>
+        <div class="cap">
+          <div class="num serif">04</div>
+          <h3>Team Leadership</h3>
+          <p>Led 15-person cross-functional teams with zero missed milestones.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="dark">
+      <div class="wrap reveal">
+        <span class="kicker">— Where I've Worked</span>
+        <h2 class="display" style="color:var(--cream);">Experience</h2>
+      </div>
+
+      <div class="wrap" style="margin-top:56px;">
+        <div class="chapter reveal">
+          <div class="chap-label serif">Chapter III</div>
+          <h3>Pfizer Japan</h3>
+          <div class="loc">Tokyo, Japan — 2022–2026</div>
+
+          <div class="role">Japan Clinical Lead, Inflammatory &amp; Immunology, R&amp;D (2025–2026)</div>
+          <ul class="bullets">
+            <li>Sole Medical Affairs secondee to R&amp;D as Japan Clinical Lead, directing 7 global clinical trials in dermatology and respiratory — from early Phase 1 through pre-submission Phase 3 — leading 15-person cross-functional teams with zero missed milestones.</li>
+            <li>Directed Phase 1 strategy for 3 pipelines in rheumatoid arthritis and lupus while concurrently leading a Phase 2 trial and Phase 3 site strategy for a first-in-class trispecific antibody spanning two therapeutic areas, including entry into a new asthma/COPD market; advanced the program to full Phase 3 launch.</li>
+            <li>Led Phase 3 planning and cross-functional approval strategy to expand a post-marketed alopecia areata therapy into a new patient population as Medical Affairs product lead, keeping global Medical Affairs and R&amp;D strategy aligned.</li>
+            <li>Partnered with global R&amp;D to analyze a multi-site trial, identified a clinician-vs-company reporting discrepancy, and redesigned the assessment protocol to restore data integrity across all sites in Japan.</li>
+          </ul>
+
+          <div class="role">Medical Affairs Scientist, Product Education &amp; Medical Strategy, Dermatology Division (2022–2026)</div>
+          <ul class="bullets">
+            <li>Sole product lead and Medical Doctor representative on drug development, providing clinical insight for Phase 2/3 trial design and market strategy alongside R&amp;D and commercial teams as the youngest of 15+ senior stakeholders.</li>
+            <li>Restructured the team operating model to drive ownership and data-driven execution — cut meeting time 50%, tripled project output, and contributed to a $7.6M annual strategic plan.</li>
+            <li>Co-led a 7-person digital transformation initiative with the Tech team, redesigning AI adoption strategy for a 40-person division — driving a 500% increase in AI usage and 1+ hour/person/day in time savings, later presented as Pfizer Japan's case study to global AI leadership.</li>
+            <li>Drove medical launch strategy for a first-in-class drug with $1B+ revenue potential, briefing 30+ sales representatives and leading stakeholder engagement across 5 university formulary committees to accelerate early market adoption.</li>
+          </ul>
+        </div>
+
+        <div class="chapter reveal">
+          <div class="chap-label serif">Chapter II</div>
+          <h3>The University of Tokyo / St. Marianna University Hospital</h3>
+          <div class="loc">Tokyo / Kanagawa, Japan — 2021–2022</div>
+          <div class="role">Senior Resident, Plastic &amp; Reconstructive Surgery</div>
+          <ul class="bullets">
+            <li>Selected as lead surgeon for infant foot reconstruction — typically reserved for residents with 3+ years of experience — as the only first-year resident among four, based on technical precision, calm decision-making, and emergency management.</li>
+            <li>Identified a patient-safety gap from inconsistent ward documentation; designed and drove full adoption of a new charting system across 10 senior physicians, improving overall inpatient safety compliance.</li>
+          </ul>
+        </div>
+
+        <div class="chapter reveal">
+          <div class="chap-label serif">Chapter I</div>
+          <h3>Kameda Medical Center</h3>
+          <div class="loc">Chiba, Japan — 2019–2021</div>
+          <div class="role">Junior Resident, Surgery Program</div>
+          <ul class="bullets">
+            <li>Led a frontline 15-person ER team during a one-month rotation, managing 8+ ambulances and 20 walk-in cases daily in a high-pressure, resource-limited environment serving a population of 110,000.</li>
+            <li>Mentored 25 first-year junior residents, tailoring guidance to individual needs and supporting their growth into capable physicians.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="wrap reveal" style="margin-top:70px;">
+        <span class="kicker">— By The Numbers</span>
+        <div class="highlight-list">
+          <div class="highlight-row">
+            <span class="stat serif" style="color:var(--cream);">7 Trials</span>
+            <span class="desc">Global clinical trials led across dermatology, respiratory, and immunology.</span>
+          </div>
+          <div class="highlight-row">
+            <span class="stat serif" style="color:var(--cream);">$7.6M</span>
+            <span class="desc">Annual strategic plan shaped through a restructured operating model.</span>
+          </div>
+          <div class="highlight-row">
+            <span class="stat serif" style="color:var(--cream);">500%</span>
+            <span class="desc">Increase in AI adoption across a 40-person division.</span>
+          </div>
+          <div class="highlight-row">
+            <span class="stat serif" style="color:var(--cream);">Zero</span>
+            <span class="desc">Missed milestones across 7 concurrent global trials.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education" class="light alt">
+      <div class="wrap reveal">
+        <span class="kicker">— Where I Studied</span>
+        <h2 class="display">Education</h2>
+
+        <div class="edu-card">
+          <span class="tag">MBA · 2028</span>
+          <h3>University of California, Berkeley — Haas School of Business</h3>
+          <div class="degree">Master of Business Administration</div>
+        </div>
+
+        <div class="edu-card">
+          <span class="tag">MD · 2019</span>
+          <h3>Nara Medical University</h3>
+          <div class="degree">Bachelor of Medicine — Kashihara, Nara, Japan</div>
+          <ul class="bullets">
+            <li>Secured Director of Medicine approval to launch the first-ever one-month research internship at the Broad Institute of MIT and Harvard (2016), Chemical Biology and Therapeutic Science Program.</li>
+            <li>Completed a one-month clinical clerkship in rare disease care (cystic fibrosis) at Chelsea &amp; Westminster Hospital, Imperial College London (2018).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="light">
+      <div class="wrap reveal">
+        <span class="kicker">— Beyond The CV</span>
+        <h2 class="display">Additional</h2>
+        <div class="chip-grid" style="margin-top:44px;">
+          <div class="chip">
+            <h3>Certifications &amp; Licensure</h3>
+            <p>Sole Japanese national selected for the King's College London Medicines Development Program, Medical Affairs Certificate. Medical License, Ministry of Health, Labour &amp; Welfare (Japan, 2019) &middot; USMLE Step 1 passed (2019).</p>
+          </div>
+          <div class="chip">
+            <h3>Languages</h3>
+            <p>Japanese (native) &middot; English (fluent) — 10+ years living in California and New Jersey, USA.</p>
+          </div>
+          <div class="chip">
+            <h3>Violin</h3>
+            <p>Violinist of 25+ years with first-chair experience in orchestras.</p>
+          </div>
+          <div class="chip">
+            <h3>Interests</h3>
+            <p>Impressionist art, soccer, and dance.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect" class="dark footer-hero">
+      <div class="wrap">
+        <span class="kicker">— Get In Touch</span>
+        <h2 class="serif">Let's<br>talk.</h2>
+      </div>
+      <div class="wrap bottom-row">
+        <div class="social">
+          <a href="mailto:shion_kiguchi@berkeley.edu">Email</a>
+          <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <span class="copy">&copy; 2026 Shion Kiguchi — site draft, content pending final review</span>
+      </div>
+    </section>
+
+  </div>
 </div>
 
-<aside class="side-nav">
-  <span class="brand-mark">Kiguchi</span>
-  <nav>
-    <a href="#connect">Contact</a>
-    <a href="#experience">Work</a>
-    <a href="#about">About</a>
-  </nav>
-</aside>
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      var id = link.getAttribute('href').slice(1);
+      var target = document.getElementById(id);
+      if(target){
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        if(link.hasAttribute('data-close')){
+          document.getElementById('nav-toggle').checked = false;
+        }
+      }
+    });
+  });
 
-<div id="top"></div>
-<section class="hero band">
-  <svg class="cloud" style="top:24px;left:32px;width:120px;" viewBox="0 0 120 60" fill="none">
-    <path d="M8 42c-6-2-6-16 6-16 2-10 22-12 26-2 12-2 20 8 14 16 6 4 2 14-6 14H16c-8 0-12-8-8-12z" stroke="#221b12" stroke-width="2" fill="#fffaf1"/>
-  </svg>
-  <div class="sticker" style="top:38px;right:96px;">MBA<br>'28</div>
-  <div class="wrap">
-    <span class="eyebrow">Physician &middot; Medical Affairs &middot; MBA Candidate</span>
-    <h1>Shion<br>Kiguchi</h1>
-    <p class="tagline">A <span class="mark">physician-scientist</span> turned <span class="mark pink">global pharmaceutical R&amp;D leader</span>, now at <span class="mark">Berkeley Haas</span> to bridge medicine and business strategy.</p>
-    <div class="hero-links">
-      <a class="pill" href="mailto:shion_kiguchi@berkeley.edu">Email me</a>
-      <a class="pill" href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </div>
-</section>
-
-<section id="about" class="band about">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">Who I am</span>
-      <h2>Six years of medicine, four years of global pharma, now an MBA.</h2>
-    </div>
-    <div class="about-grid">
-      <div class="about-text">
-        <p>Trained as a physician in Japan, Shion spent six years in clinical surgery and residency before moving into global pharmaceutical R&amp;D at Pfizer, leading cross-functional clinical trial strategy across dermatology, respiratory, and immunology programs.</p>
-        <p>She is currently an <span class="mark">MBA candidate</span> at the Haas School of Business at UC Berkeley, building on a decade of clinical and pharmaceutical leadership to move into broader healthcare strategy and business roles.</p>
-        <a class="readmore" href="#experience">See the work &rarr;</a>
-      </div>
-      <div class="doodle-card">
-        <h3>At a glance</h3>
-        <ul>
-          <li>MD &middot; Nara Medical University, 2019</li>
-          <li>4 years, Pfizer Japan Medical Affairs &amp; R&amp;D</li>
-          <li>7 global clinical trials led</li>
-          <li>MBA Candidate, Haas School of Business, 2028</li>
-          <li>Japanese (native) &middot; English (fluent)</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="journey" class="band journey tight">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">The path so far</span>
-      <h2>From the ER in Chiba to Sather Gate in Berkeley.</h2>
-    </div>
-    <svg viewBox="0 0 1000 260" xmlns="http://www.w3.org/2000/svg">
-      <path d="M40,190 C160,60 260,230 380,110 C480,10 560,190 660,90 C760,10 840,150 950,70"
-            fill="none" stroke="#221b12" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
-      <g font-family="Inter, sans-serif">
-        <circle cx="40" cy="190" r="10" fill="#e79aa2" stroke="#221b12" stroke-width="2"/>
-        <text x="40" y="222" font-size="14" font-weight="700" text-anchor="middle" fill="#221b12">Nara</text>
-        <text x="40" y="238" font-size="12" text-anchor="middle" fill="#4b4030">Med school, 2019</text>
-
-        <circle cx="380" cy="110" r="10" fill="#f3c34a" stroke="#221b12" stroke-width="2"/>
-        <text x="380" y="70" font-size="14" font-weight="700" text-anchor="middle" fill="#221b12">Chiba</text>
-        <text x="380" y="86" font-size="12" text-anchor="middle" fill="#4b4030">Kameda, 2019–21</text>
-
-        <circle cx="660" cy="90" r="10" fill="#eb8a5c" stroke="#221b12" stroke-width="2"/>
-        <text x="660" y="55" font-size="14" font-weight="700" text-anchor="middle" fill="#221b12">Tokyo / Kanagawa</text>
-        <text x="660" y="130" font-size="12" text-anchor="middle" fill="#4b4030">Surgery residency, 2021–22</text>
-
-        <circle cx="800" cy="130" r="10" fill="#e79aa2" stroke="#221b12" stroke-width="2"/>
-        <text x="800" y="164" font-size="14" font-weight="700" text-anchor="middle" fill="#221b12">Tokyo</text>
-        <text x="800" y="180" font-size="12" text-anchor="middle" fill="#4b4030">Pfizer, 2022–26</text>
-
-        <circle cx="950" cy="70" r="11" fill="#221b12"/>
-        <text x="950" y="40" font-size="14" font-weight="700" text-anchor="middle" fill="#221b12">Berkeley</text>
-        <text x="950" y="105" font-size="12" text-anchor="middle" fill="#4b4030">Haas MBA, 2026–28</text>
-      </g>
-    </svg>
-    <p class="journey-caption">Clinical practice across three Japanese hospitals, four years in global pharmaceutical R&amp;D, and now business school in California.</p>
-  </div>
-</section>
-
-<section id="experience" class="band experience">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">Where I've worked</span>
-      <h2>Experience</h2>
-    </div>
-
-    <div class="job-card">
-      <span class="tape">2022 – 2026</span>
-      <div class="job-head">
-        <div class="job-org">Pfizer Japan <span class="loc">— Tokyo, Japan</span></div>
-      </div>
-
-      <div class="role">Japan Clinical Lead, Inflammatory &amp; Immunology, R&amp;D (2025–2026)</div>
-      <ul class="bullets">
-        <li>Sole Medical Affairs secondee to R&amp;D as Japan Clinical Lead, directing 7 global clinical trials in dermatology and respiratory — from early Phase 1 through pre-submission Phase 3 — leading 15-person cross-functional teams with zero missed milestones.</li>
-        <li>Directed Phase 1 strategy for 3 pipelines in rheumatoid arthritis and lupus while concurrently leading a Phase 2 trial and Phase 3 site strategy for a first-in-class trispecific antibody spanning two therapeutic areas, including entry into a new asthma/COPD market; advanced the program to full Phase 3 launch.</li>
-        <li>Led Phase 3 planning and cross-functional approval strategy to expand a post-marketed alopecia areata therapy into a new patient population as Medical Affairs product lead, keeping global Medical Affairs and R&amp;D strategy aligned.</li>
-        <li>Partnered with global R&amp;D to analyze a multi-site trial, identified a clinician-vs-company reporting discrepancy, and redesigned the assessment protocol to restore data integrity across all sites in Japan.</li>
-      </ul>
-
-      <div class="role">Medical Affairs Scientist, Product Education &amp; Medical Strategy, Dermatology Division (2022–2026)</div>
-      <ul class="bullets">
-        <li>Sole product lead and Medical Doctor representative on drug development, providing clinical insight for Phase 2/3 trial design and market strategy alongside R&amp;D and commercial teams as the youngest of 15+ senior stakeholders.</li>
-        <li>Restructured the team operating model to drive ownership and data-driven execution — cut meeting time 50%, tripled project output, and contributed to a $7.6M annual strategic plan.</li>
-        <li>Co-led a 7-person digital transformation initiative with the Tech team, redesigning AI adoption strategy for a 40-person division — driving a 500% increase in AI usage and 1+ hour/person/day in time savings, later presented as Pfizer Japan's case study to global AI leadership.</li>
-        <li>Drove medical launch strategy for a first-in-class drug with $1B+ revenue potential, briefing 30+ sales representatives and leading stakeholder engagement across 5 university formulary committees to accelerate early market adoption.</li>
-      </ul>
-    </div>
-
-    <div class="job-card">
-      <span class="tape">2021 – 2022</span>
-      <div class="job-head">
-        <div class="job-org">The University of Tokyo / St. Marianna University Hospital <span class="loc">— Tokyo / Kanagawa, Japan</span></div>
-      </div>
-      <div class="role">Senior Resident, Plastic &amp; Reconstructive Surgery</div>
-      <ul class="bullets">
-        <li>Selected as lead surgeon for infant foot reconstruction — typically reserved for residents with 3+ years of experience — as the only first-year resident among four, based on technical precision, calm decision-making, and emergency management.</li>
-        <li>Identified a patient-safety gap from inconsistent ward documentation; designed and drove full adoption of a new charting system across 10 senior physicians, improving overall inpatient safety compliance.</li>
-      </ul>
-    </div>
-
-    <div class="job-card">
-      <span class="tape">2019 – 2021</span>
-      <div class="job-head">
-        <div class="job-org">Kameda Medical Center <span class="loc">— Chiba, Japan</span></div>
-      </div>
-      <div class="role">Junior Resident, Surgery Program</div>
-      <ul class="bullets">
-        <li>Led a frontline 15-person ER team during a one-month rotation, managing 8+ ambulances and 20 walk-in cases daily in a high-pressure, resource-limited environment serving a population of 110,000.</li>
-        <li>Mentored 25 first-year junior residents, tailoring guidance to individual needs and supporting their growth into capable physicians.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="education" class="band education">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">Where I studied</span>
-      <h2>Education</h2>
-    </div>
-    <div class="edu-grid">
-      <div class="edu-card">
-        <span class="edu-badge">MBA</span>
-        <div class="job-org">University of California, Berkeley — Haas School of Business</div>
-        <div class="degree">Master of Business Administration &middot; May 2028</div>
-      </div>
-
-      <div class="edu-card">
-        <span class="edu-badge">MD</span>
-        <div class="job-org">Nara Medical University <span class="loc">— Kashihara, Nara, Japan</span></div>
-        <div class="degree">Bachelor of Medicine &middot; March 2019</div>
-        <ul class="bullets">
-          <li>Secured Director of Medicine approval to launch the first-ever one-month research internship at the Broad Institute of MIT and Harvard (2016), Chemical Biology and Therapeutic Science Program.</li>
-          <li>Completed a one-month clinical clerkship in rare disease care (cystic fibrosis) at Chelsea &amp; Westminster Hospital, Imperial College London (2018).</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="more" class="band more">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="kicker">Beyond the CV</span>
-      <h2>Additional</h2>
-    </div>
-    <div class="chip-grid">
-      <div class="chip">
-        <h3>Certifications &amp; Licensure</h3>
-        <p>Sole Japanese national selected for the King's College London Medicines Development Program, Medical Affairs Certificate. Medical License, Ministry of Health, Labour &amp; Welfare (Japan, 2019) &middot; USMLE Step 1 passed (2019).</p>
-      </div>
-      <div class="chip">
-        <h3>Languages</h3>
-        <p>Japanese (native) &middot; English (fluent) — 10+ years living in California and New Jersey, USA.</p>
-      </div>
-      <div class="chip">
-        <h3>Violin</h3>
-        <p>Violinist of 25+ years with first-chair experience in orchestras.</p>
-      </div>
-      <div class="chip">
-        <h3>Interests</h3>
-        <p>Impressionist art, soccer, and dance.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer id="connect">
-  <div class="wrap footer-top">
-    <h2>Let's connect</h2>
-    <p>Open to conversations on healthcare strategy, medical affairs, and cross-industry opportunities.</p>
-    <div class="hero-links">
-      <a class="pill" href="mailto:shion_kiguchi@berkeley.edu">Email me</a>
-      <a class="pill" href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
-    </div>
-  </div>
-  <div class="footer-bar">
-    <div class="wrap" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-      <div class="social-row">
-        <a class="social-circle" href="mailto:shion_kiguchi@berkeley.edu" aria-label="Email">@</a>
-        <a class="social-circle" href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
-      </div>
-      <span class="contact-text">&copy; 2026 Shion Kiguchi &middot; site draft, content pending final review</span>
-    </div>
-  </div>
-</footer>
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){ entry.target.classList.add('in-view'); }
+    });
+  }, {root: document.getElementById('scroll-area'), threshold: 0.15});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+</script>
 
 </body>
 </html>
