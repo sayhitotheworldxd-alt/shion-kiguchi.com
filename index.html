@@ -122,6 +122,12 @@
     color:var(--cream);padding-left:56px;
   }
   .hero h1 em{font-style:italic;color:var(--accent);text-shadow:0 0 60px rgba(13,134,201,0.35);}
+  .hero-subtitle{
+    font-size:clamp(1.2rem,2.6vw,1.6rem);font-weight:500;color:var(--muted-onink);
+    padding-left:56px;margin-top:18px;
+  }
+  .hero-subtitle em{font-style:italic;color:var(--accent);}
+  @media (max-width:640px){ .hero-subtitle{padding-left:24px;} }
   .hero .bottom-row{
     position:absolute;bottom:34px;left:56px;right:48px;
     display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:20px;
@@ -301,7 +307,8 @@
         <a href="mailto:shion_kiguchi@berkeley.edu">Email</a>
         <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
       </div>
-      <h1 class="serif">Physician<br><em>&amp; Strategist</em></h1>
+      <h1 class="serif">Shion<br>Kiguchi</h1>
+      <p class="hero-subtitle serif">Physician <em>&amp; Strategist</em></p>
       <div class="bottom-row">
         <div class="contact-block">
           <span class="label">Contact To</span>
@@ -362,7 +369,7 @@
     <section id="journey" class="dark">
       <div class="wrap reveal">
         <span class="kicker">— The Journey</span>
-        <h2 class="display" style="color:var(--cream);">From Nara to Berkeley, by way of Tokyo.</h2>
+        <h2 class="display" style="color:var(--cream);">From Nara to Berkeley.</h2>
       </div>
       <div class="wrap reveal" style="margin-top:56px;">
         <svg viewBox="-30 0 1080 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
