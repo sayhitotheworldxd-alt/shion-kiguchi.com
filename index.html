@@ -156,6 +156,22 @@
 
   h2.display{font-family:'Bodoni Moda',serif;font-weight:600;font-size:clamp(2rem,5vw,3.2rem);line-height:1.05;max-width:760px;}
 
+  /* career journey table — glanceable overview, links down to full chapters */
+  .career-table{border-top:1px solid rgba(243,237,226,0.18);}
+  .career-row{
+    display:grid;grid-template-columns:110px 1fr auto;gap:24px;align-items:baseline;
+    padding:20px 4px;border-bottom:1px solid rgba(243,237,226,0.18);
+    text-decoration:none;transition:padding-left .2s ease, background .2s ease;
+  }
+  .career-row:hover{padding-left:14px;background:rgba(243,237,226,0.04);}
+  .career-row .yr{font-size:1.1rem;color:var(--accent);white-space:nowrap;}
+  .career-row .rl{color:var(--cream);font-size:0.98rem;}
+  .career-row .og{color:var(--muted-onink);font-size:0.9rem;text-align:right;white-space:nowrap;}
+  @media (max-width:640px){
+    .career-row{grid-template-columns:1fr;gap:4px;padding:16px 4px;}
+    .career-row .og{text-align:left;}
+  }
+
   /* chapters (experience) */
   .chapter{padding:70px 0;border-top:1px solid rgba(243,237,226,0.15);}
   .chapter:first-of-type{border-top:none;padding-top:0;}
@@ -368,8 +384,38 @@
         <h2 class="display" style="color:var(--cream);">Experience</h2>
       </div>
 
+      <div class="wrap reveal" style="margin-top:48px;">
+        <div class="career-table">
+          <a href="#chapter-mba" class="career-row">
+            <span class="yr serif">Now</span>
+            <span class="rl">MBA Candidate</span>
+            <span class="og">Haas School of Business</span>
+          </a>
+          <a href="#chapter-iii" class="career-row">
+            <span class="yr serif">2025–26</span>
+            <span class="rl">Japan Clinical Lead, Inflammatory &amp; Immunology</span>
+            <span class="og">Pfizer Japan</span>
+          </a>
+          <a href="#chapter-iii" class="career-row">
+            <span class="yr serif">2022–26</span>
+            <span class="rl">Medical Affairs Scientist</span>
+            <span class="og">Pfizer Japan</span>
+          </a>
+          <a href="#chapter-ii" class="career-row">
+            <span class="yr serif">2021–22</span>
+            <span class="rl">Senior Resident, Plastic &amp; Reconstructive Surgery</span>
+            <span class="og">Univ. of Tokyo / St. Marianna</span>
+          </a>
+          <a href="#chapter-i" class="career-row">
+            <span class="yr serif">2019–21</span>
+            <span class="rl">Junior Resident, Surgery</span>
+            <span class="og">Kameda Medical Center</span>
+          </a>
+        </div>
+      </div>
+
       <div class="wrap" style="margin-top:56px;">
-        <div class="chapter reveal">
+        <div class="chapter reveal" id="chapter-iii">
           <div class="chap-label serif">Chapter III</div>
           <h3>Pfizer Japan</h3>
           <div class="loc">Tokyo, Japan — 2022–2026</div>
@@ -409,7 +455,7 @@
           </details>
         </div>
 
-        <div class="chapter reveal">
+        <div class="chapter reveal" id="chapter-ii">
           <div class="chap-label serif" style="color:var(--accent-2);">Chapter II</div>
           <h3>The University of Tokyo / St. Marianna University Hospital</h3>
           <div class="loc">Tokyo / Kanagawa, Japan — 2021–2022</div>
@@ -428,7 +474,7 @@
           </details>
         </div>
 
-        <div class="chapter reveal">
+        <div class="chapter reveal" id="chapter-i">
           <div class="chap-label serif">Chapter I</div>
           <h3>Kameda Medical Center</h3>
           <div class="loc">Chiba, Japan — 2019–2021</div>
@@ -454,7 +500,7 @@
         <span class="kicker">— Where I Studied</span>
         <h2 class="display">Education</h2>
 
-        <div class="edu-card">
+        <div class="edu-card" id="chapter-mba">
           <span class="tag">MBA · 2028</span>
           <h3>University of California, Berkeley — Haas School of Business</h3>
           <div class="degree">Master of Business Administration</div>
