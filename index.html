@@ -7,7 +7,7 @@
 <meta name="description" content="Shion Kiguchi — Physician, Global Medical Affairs Leader, MBA Candidate at UC Berkeley Haas School of Business." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..700;1,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400..700;1,400..600&family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#10161a;
@@ -20,9 +20,10 @@
     --muted-onink:#a3b7bb;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
+  [hidden]{display:none !important;}
   html,body{height:100%;}
   body{
-    font-family:'Inter',system-ui,sans-serif;
+    font-family:'Inter','Noto Sans JP',system-ui,sans-serif;
     background:#000;
     color:var(--ink);
     -webkit-font-smoothing:antialiased;
@@ -90,7 +91,7 @@
 
   /* section shells */
   section{position:relative;padding:72px 0;}
-  #about{padding:110px 0;}
+  #about-en,#about-ja{padding:110px 0;}
   section.dark{background:var(--ink);color:var(--cream);}
   section.light{background:var(--cream);color:var(--ink);}
   section.light.alt{background:var(--cream-2);}
@@ -115,10 +116,12 @@
   .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-start;padding:0;padding-top:130px;}
   @media (max-width:640px){ .hero{padding-top:100px;} }
   .hero .top-row{
-    position:absolute;top:34px;right:48px;display:flex;gap:28px;font-size:0.85rem;
+    position:absolute;top:34px;right:48px;display:flex;align-items:center;gap:28px;font-size:0.85rem;
   }
   .hero .top-row a{border-bottom:1px solid transparent;}
   .hero .top-row a:hover{border-color:var(--cream);}
+  .hero .top-row button{background:none;border:none;font:inherit;color:inherit;cursor:pointer;padding:0;border-bottom:1px solid transparent;}
+  .hero .top-row button:hover{border-color:var(--cream);}
   .hero h1{
     font-size:clamp(3.4rem,10vw,7.5rem);line-height:0.98;font-weight:500;
     color:var(--cream);padding-left:56px;text-transform:uppercase;
@@ -138,6 +141,26 @@
   .hero .contact-block a{font-size:0.92rem;letter-spacing:0.02em;border-bottom:1px solid var(--muted-onink);}
   .hero .contact-block a:hover{border-color:var(--cream);}
   .hero .tagline{font-size:0.78rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted-onink);text-align:right;max-width:220px;}
+
+  /* interactive cursor ripple inside the hero */
+  .mouse-ripple{
+    position:absolute;left:0;top:0;width:0;height:0;pointer-events:none;z-index:2;
+    transition:left .12s linear, top .12s linear, opacity .2s ease;
+    opacity:0;
+  }
+  .mouse-ripple.active{opacity:1;}
+  .mouse-ripple .ripple-ring{
+    position:absolute;left:0;top:0;width:10px;height:10px;margin:-5px 0 0 -5px;
+    border-radius:50%;border:1.5px dotted var(--muted-onink);
+    animation:mouse-ripple-anim 2.6s ease-out infinite;opacity:0;
+  }
+  .mouse-ripple .r2{animation-delay:0.9s;}
+  .mouse-ripple .r3{animation-delay:1.8s;}
+  @keyframes mouse-ripple-anim{
+    0%{ width:8px;height:8px;margin:-4px 0 0 -4px;opacity:0.55; }
+    100%{ width:110px;height:110px;margin:-55px 0 0 -55px;opacity:0; }
+  }
+  @media (max-width:640px){ .mouse-ripple{display:none;} }
 
   /* reveal on scroll */
   .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
@@ -224,15 +247,6 @@
   details.chapter-detail[open] summary{margin-bottom:16px;}
   details.chapter-detail ul.bullets{padding-top:2px;}
 
-  /* highlights bold list, echoing the "related work" list treatment */
-  .highlight-list{border-top:1px solid rgba(23,20,15,0.18);}
-  .highlight-row{
-    display:flex;justify-content:space-between;align-items:baseline;
-    padding:22px 0;border-bottom:1px solid rgba(23,20,15,0.18);gap:20px;flex-wrap:wrap;
-  }
-  .highlight-row .stat{font-family:'Bodoni Moda',serif;font-weight:600;font-size:clamp(1.6rem,4vw,2.4rem);}
-  .highlight-row .desc{color:var(--muted);font-size:0.92rem;max-width:420px;text-align:right;}
-
   /* education cards */
   .edu-card{padding:32px 0;border-top:1px solid rgba(23,20,15,0.15);}
   .edu-card:first-child{border-top:none;}
@@ -259,6 +273,21 @@
   .footer-hero .social{display:flex;gap:22px;font-size:0.85rem;color:var(--muted-onink);}
   .footer-hero .social a:hover{color:var(--cream);}
   .footer-hero .copy{font-size:0.75rem;color:var(--muted-onink);}
+
+  .footer-hero .contact-links{
+    display:flex;justify-content:center;align-items:baseline;gap:48px;flex-wrap:wrap;
+    margin:52px 0 18px;
+  }
+  .footer-hero .contact-links a{
+    font-family:'Bodoni Moda',serif;font-weight:600;font-size:clamp(1.4rem,3.2vw,2.1rem);
+    color:var(--cream);border-bottom:1.5px solid rgba(163,183,187,0.4);padding-bottom:6px;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .footer-hero .contact-links a:hover{color:var(--accent);border-color:var(--accent);}
+  .footer-hero .contact-hint{margin:0;text-align:center;font-size:0.85rem;letter-spacing:0.02em;color:var(--muted-onink);}
+  @media (max-width:640px){
+    .footer-hero .contact-links{gap:28px;margin:36px 0 14px;}
+  }
 
   @media (max-width:640px){
     .book{margin:0;border-radius:0;height:100vh;}
@@ -289,28 +318,43 @@
   <div class="main" id="scroll-area">
 
     <nav class="overlay">
-      <label class="close" for="nav-toggle">Close</label>
-      <ol>
-        <li><span class="n">01.</span><a href="#top" data-close>Home</a></li>
-        <li><span class="n">02.</span><a href="#about" data-close>About</a></li>
-        <li><span class="n">03.</span><a href="#journey" data-close>Journey</a></li>
-        <li><span class="n">04.</span><a href="#experience" data-close>Experience</a></li>
-        <li><span class="n">05.</span><a href="#education" data-close>Education</a></li>
-        <li><span class="n">06.</span><a href="#connect" data-close>Contact</a></li>
+      <label class="close" for="nav-toggle"><span data-lang="en">Close</span><span data-lang="ja" hidden>閉じる</span></label>
+      <ol data-lang="en">
+        <li><span class="n">01.</span><a href="#top-en" data-close>Home</a></li>
+        <li><span class="n">02.</span><a href="#about-en" data-close>About</a></li>
+        <li><span class="n">03.</span><a href="#journey-en" data-close>Journey</a></li>
+        <li><span class="n">04.</span><a href="#experience-en" data-close>Experience</a></li>
+        <li><span class="n">05.</span><a href="#education-en" data-close>Education</a></li>
+        <li><span class="n">06.</span><a href="#connect-en" data-close>Contact</a></li>
       </ol>
-      <div class="social">
+      <ol data-lang="ja" hidden>
+        <li><span class="n">01.</span><a href="#top-ja" data-close>ホーム</a></li>
+        <li><span class="n">02.</span><a href="#about-ja" data-close>プロフィール</a></li>
+        <li><span class="n">03.</span><a href="#journey-ja" data-close>これまで</a></li>
+        <li><span class="n">04.</span><a href="#experience-ja" data-close>職歴</a></li>
+        <li><span class="n">05.</span><a href="#education-ja" data-close>学歴</a></li>
+        <li><span class="n">06.</span><a href="#connect-ja" data-close>お問い合わせ</a></li>
+      </ol>
+      <div class="social" data-lang="en">
         <a href="mailto:shion_kiguchi@berkeley.edu">Email</a>
+        <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <div class="social" data-lang="ja" hidden>
+        <a href="mailto:shion_kiguchi@berkeley.edu">メール</a>
         <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </nav>
 
-    <section id="top" class="dark hero">
+    <!-- ========================= ENGLISH ========================= -->
+    <section id="top-en" class="dark hero" data-lang="en">
       <div class="top-row">
         <a href="mailto:shion_kiguchi@berkeley.edu">Email</a>
         <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
+        <button type="button" class="lang-toggle-btn" aria-label="Switch to Japanese">日本語</button>
       </div>
       <h1 class="serif">Shion<br>Kiguchi</h1>
       <p class="hero-subtitle serif">Physician <em>&amp; Strategist</em></p>
+      <div class="mouse-ripple"><span class="ripple-ring r1"></span><span class="ripple-ring r2"></span><span class="ripple-ring r3"></span></div>
       <div class="bottom-row">
         <div class="contact-block">
           <span class="label">Contact To</span>
@@ -320,10 +364,10 @@
       </div>
     </section>
 
-    <section id="about" class="light">
+    <section id="about-en" class="light" data-lang="en">
       <div class="wrap reveal">
         <span class="kicker">— About</span>
-        <h2 class="display">Six years of medicine, four years of global pharma, now an MBA.</h2>
+        <h2 class="display">4 years of medicine, 4 years of global pharma, now an MBA.</h2>
       </div>
       <div class="wrap reveal" style="margin-top:36px;">
         <div class="about-photo-grid">
@@ -333,7 +377,7 @@
             <span>Photo</span>
             <small>Add headshot here</small>
           </div>
-          <p style="font-size:1.02rem;color:var(--muted);line-height:1.7;max-width:640px;">Trained as a physician in Japan, Shion spent six years in clinical surgery and residency before moving into global pharmaceutical R&amp;D at Pfizer, leading cross-functional clinical trial strategy across dermatology, respiratory, and immunology. She is currently an MBA candidate at the Haas School of Business at UC Berkeley, building on a decade of clinical and pharmaceutical leadership to move into broader healthcare strategy and business roles.</p>
+          <p style="font-size:1.02rem;color:var(--muted);line-height:1.7;max-width:640px;">Trained as a physician in Japan, Shion spent 4 years in Reconstruction &amp; Plastic Surgery before moving into a global pharmaceutical Medical Affairs/R&amp;D role at Pfizer, leading cross-functional clinical trial strategy across dermatology, respiratory, and immunology.<br><br>She is currently an MBA candidate at the Haas School of Business at UC Berkeley, building on clinical and pharmaceutical leadership to move into broader healthcare strategy and business roles.</p>
         </div>
       </div>
 
@@ -343,7 +387,7 @@
         </div>
       </div>
       <div class="cap-strip-wrap reveal">
-        <div class="cap-grid" id="cap-grid">
+        <div class="cap-grid">
           <div class="cap">
             <div class="num serif">01</div>
             <h3>Clinical Leadership</h3>
@@ -368,7 +412,7 @@
       </div>
     </section>
 
-    <section id="journey" class="dark">
+    <section id="journey-en" class="dark" data-lang="en">
       <div class="wrap reveal">
         <span class="kicker">— The Journey</span>
         <h2 class="display" style="color:var(--cream);">From Nara to Berkeley.</h2>
@@ -405,7 +449,7 @@
       </div>
     </section>
 
-    <section id="experience" class="dark">
+    <section id="experience-en" class="dark" data-lang="en">
       <div class="wrap reveal">
         <span class="kicker">— Where I've Worked</span>
         <h2 class="display" style="color:var(--cream);">Experience</h2>
@@ -413,27 +457,27 @@
 
       <div class="wrap reveal" style="margin-top:48px;">
         <div class="career-table">
-          <a href="#chapter-mba" class="career-row">
+          <a href="#chapter-mba-en" class="career-row">
             <span class="yr serif">Now</span>
             <span class="rl">MBA Candidate</span>
             <span class="og">Haas School of Business</span>
           </a>
-          <a href="#chapter-iii" class="career-row">
+          <a href="#chapter-iii-en" class="career-row">
             <span class="yr serif">2025–26</span>
             <span class="rl">Japan Clinical Lead, Inflammatory &amp; Immunology</span>
             <span class="og">Pfizer Japan</span>
           </a>
-          <a href="#chapter-iii" class="career-row">
+          <a href="#chapter-iii-en" class="career-row">
             <span class="yr serif">2022–26</span>
             <span class="rl">Medical Affairs Scientist</span>
             <span class="og">Pfizer Japan</span>
           </a>
-          <a href="#chapter-ii" class="career-row">
+          <a href="#chapter-ii-en" class="career-row">
             <span class="yr serif">2021–22</span>
             <span class="rl">Senior Resident, Plastic &amp; Reconstructive Surgery</span>
             <span class="og">Univ. of Tokyo / St. Marianna</span>
           </a>
-          <a href="#chapter-i" class="career-row">
+          <a href="#chapter-i-en" class="career-row">
             <span class="yr serif">2019–21</span>
             <span class="rl">Junior Resident, Surgery</span>
             <span class="og">Kameda Medical Center</span>
@@ -442,7 +486,7 @@
       </div>
 
       <div class="wrap" style="margin-top:56px;">
-        <div class="chapter reveal" id="chapter-iii">
+        <div class="chapter reveal" id="chapter-iii-en">
           <div class="chap-label serif">Chapter III</div>
           <h3>Pfizer Japan</h3>
           <div class="loc">Tokyo, Japan — 2022–2026</div>
@@ -482,7 +526,7 @@
           </details>
         </div>
 
-        <div class="chapter reveal" id="chapter-ii">
+        <div class="chapter reveal" id="chapter-ii-en">
           <div class="chap-label serif" style="color:var(--accent-2);">Chapter II</div>
           <h3>The University of Tokyo / St. Marianna University Hospital</h3>
           <div class="loc">Tokyo / Kanagawa, Japan — 2021–2022</div>
@@ -501,7 +545,7 @@
           </details>
         </div>
 
-        <div class="chapter reveal" id="chapter-i">
+        <div class="chapter reveal" id="chapter-i-en">
           <div class="chap-label serif">Chapter I</div>
           <h3>Kameda Medical Center</h3>
           <div class="loc">Chiba, Japan — 2019–2021</div>
@@ -522,12 +566,12 @@
       </div>
     </section>
 
-    <section id="education" class="light alt">
+    <section id="education-en" class="light alt" data-lang="en">
       <div class="wrap reveal">
         <span class="kicker">— Where I Studied</span>
         <h2 class="display">Education</h2>
 
-        <div class="edu-card" id="chapter-mba">
+        <div class="edu-card" id="chapter-mba-en">
           <span class="tag">MBA · 2028</span>
           <h3>University of California, Berkeley — Haas School of Business</h3>
           <div class="degree">Master of Business Administration</div>
@@ -545,7 +589,7 @@
       </div>
     </section>
 
-    <section class="light">
+    <section class="light" data-lang="en">
       <div class="wrap reveal">
         <span class="kicker">— Beyond The CV</span>
         <h2 class="display">Additional</h2>
@@ -560,17 +604,17 @@
           </div>
           <div class="chip">
             <h3>Violin</h3>
-            <p>Violinist of 25+ years with first-chair experience in orchestras.</p>
+            <p>Violinist of 25+ years with first-chair experience in orchestras (SD Youth &amp; Nara Junior Orchestra).</p>
           </div>
           <div class="chip">
             <h3 style="color:var(--accent-2);">Interests</h3>
-            <p>Impressionist art, soccer, and dance.</p>
+            <p>Impressionist art, design, soccer, and dance.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="connect" class="dark footer-hero">
+    <section id="connect-en" class="dark footer-hero" data-lang="en">
       <div class="wrap">
         <span class="kicker">— Get In Touch</span>
         <h2 class="serif">Let's<br>talk.</h2>
@@ -581,6 +625,288 @@
           <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
         </div>
         <span class="copy">&copy; 2026 Shion Kiguchi — site draft, content pending final review</span>
+      </div>
+    </section>
+
+    <!-- ========================= 日本語 ========================= -->
+    <section id="top-ja" class="dark hero" data-lang="ja" hidden>
+      <div class="top-row">
+        <a href="mailto:shion_kiguchi@berkeley.edu">メール</a>
+        <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
+        <button type="button" class="lang-toggle-btn" aria-label="Switch to English">EN</button>
+      </div>
+      <h1 class="serif">Shion<br>Kiguchi</h1>
+      <p class="hero-subtitle serif">Physician <em>&amp; Business</em></p>
+      <div class="mouse-ripple"><span class="ripple-ring r1"></span><span class="ripple-ring r2"></span><span class="ripple-ring r3"></span></div>
+      <div class="bottom-row">
+        <div class="contact-block">
+          <span class="label">お問い合わせ</span>
+          <a href="mailto:shion_kiguchi@berkeley.edu">shion_kiguchi@berkeley.edu</a>
+        </div>
+        <div class="tagline">Where medicine meets strategy</div>
+      </div>
+    </section>
+
+    <section id="about-ja" class="light" data-lang="ja" hidden>
+      <div class="wrap reveal">
+        <span class="kicker">— プロフィール</span>
+        <h2 class="display">医療の道で4年、グローバル製薬企業で4年。そして MBAへ。</h2>
+      </div>
+      <div class="wrap reveal" style="margin-top:36px;">
+        <div class="about-photo-grid">
+          <div class="photo-placeholder">
+            <span>Photo</span>
+            <small>Add headshot here</small>
+          </div>
+          <p style="font-size:1.02rem;color:var(--muted);line-height:1.9;max-width:640px;">日本で医師としての研修を受けた後、4年間形成外科・再建外科に従事。その後、ファイザーのグローバルメディカルアフェアーズ/研究開発部門に移り、皮膚科・呼吸器・免疫領域における部門横断的な臨床試験戦略をリード。<br><br>現在はUCバークレー・ハース経営大学院のMBA候補生として、臨床および製薬業界でのリーダーシップを土台に、より広いヘルスケア戦略・事業領域への展開を目指している。</p>
+        </div>
+      </div>
+
+      <div class="wrap reveal" style="margin-top:64px;margin-bottom:0;">
+        <div class="cap-hint">
+          <span>スライドしてご覧ください</span><span class="arrow">&rarr;</span>
+        </div>
+      </div>
+      <div class="cap-strip-wrap reveal">
+        <div class="cap-grid">
+          <div class="cap">
+            <div class="num serif">01</div>
+            <h3>臨床リーダーシップ</h3>
+            <p>日本国内3つの病院で外科研修医・救急最前線のリーダーを歴任。</p>
+          </div>
+          <div class="cap">
+            <div class="num serif" style="color:var(--accent-2);">02</div>
+            <h3>メディカルアフェアーズ</h3>
+            <p>研究開発・営業・臨床現場をつなぐ、唯一の医師出身プロダクトリード。</p>
+          </div>
+          <div class="cap">
+            <div class="num serif">03</div>
+            <h3>臨床試験戦略</h3>
+            <p>免疫・皮膚科領域における7件のグローバル試験でフェーズ1〜3戦略を統括。</p>
+          </div>
+          <div class="cap">
+            <div class="num serif" style="color:var(--accent-2);">04</div>
+            <h3>チームリーダーシップ</h3>
+            <p>15名規模の部門横断チームを率い、全マイルストーンを期限内に達成。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="journey-ja" class="dark" data-lang="ja" hidden>
+      <div class="wrap reveal">
+        <span class="kicker">— これまで</span>
+        <h2 class="display" style="color:var(--cream);">奈良からバークレーへ。</h2>
+      </div>
+      <div class="wrap reveal" style="margin-top:56px;">
+        <svg viewBox="-30 0 1080 260" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <path d="M40,190 C160,60 260,230 380,110 C480,10 560,190 660,90 C760,10 840,150 950,70"
+                fill="none" stroke="#0d86c9" stroke-width="2.5" stroke-dasharray="1.5 9" stroke-linecap="round"/>
+          <g font-family="Inter, sans-serif">
+            <circle cx="40" cy="190" r="10" fill="#0d86c9" stroke="#10161a" stroke-width="3"/>
+            <text x="40" y="228" font-size="17" font-weight="700" text-anchor="middle" fill="#eef1ee">奈良</text>
+            <text x="40" y="248" font-size="13.5" text-anchor="middle" fill="#a3b7bb">医学部卒業、2019</text>
+
+            <circle cx="380" cy="110" r="10" fill="#12a373" stroke="#10161a" stroke-width="3"/>
+            <text x="380" y="76" font-size="17" font-weight="700" text-anchor="middle" fill="#eef1ee">千葉</text>
+            <text x="380" y="58" font-size="13.5" text-anchor="middle" fill="#a3b7bb">初期研修、2019–21</text>
+
+            <circle cx="660" cy="90" r="10" fill="#0d86c9" stroke="#10161a" stroke-width="3"/>
+            <text x="660" y="56" font-size="17" font-weight="700" text-anchor="middle" fill="#eef1ee">東京・神奈川</text>
+            <text x="660" y="134" font-size="13.5" text-anchor="middle" fill="#a3b7bb">後期研修、2021–22</text>
+
+            <circle cx="801" cy="80" r="10" fill="#12a373" stroke="#10161a" stroke-width="3"/>
+            <text x="801" y="116" font-size="17" font-weight="700" text-anchor="middle" fill="#eef1ee">東京</text>
+            <text x="801" y="135" font-size="13.5" text-anchor="middle" fill="#a3b7bb">ファイザー、2022–26</text>
+
+            <circle cx="950" cy="70" r="12" fill="#eef1ee" stroke="#0d86c9" stroke-width="3"/>
+            <text x="950" y="34" font-size="18" font-weight="700" text-anchor="middle" fill="#eef1ee">バークレー</text>
+            <text x="950" y="108" font-size="14" text-anchor="middle" fill="#a3b7bb">ハースMBA、2026–28</text>
+          </g>
+        </svg>
+      </div>
+      <div class="wrap reveal" style="margin-top:8px;">
+        <p style="color:var(--muted-onink);font-size:0.92rem;max-width:560px;">日本国内3つの病院での臨床経験、グローバル製薬企業での研究開発4年、そして現在はカリフォルニアのビジネススクールへ。</p>
+      </div>
+    </section>
+
+    <section id="experience-ja" class="dark" data-lang="ja" hidden>
+      <div class="wrap reveal">
+        <span class="kicker">— 職歴</span>
+        <h2 class="display" style="color:var(--cream);">職歴</h2>
+      </div>
+
+      <div class="wrap reveal" style="margin-top:48px;">
+        <div class="career-table">
+          <a href="#chapter-mba-ja" class="career-row">
+            <span class="yr serif">現在</span>
+            <span class="rl">MBA候補生</span>
+            <span class="og">ハース経営大学院</span>
+          </a>
+          <a href="#chapter-iii-ja" class="career-row">
+            <span class="yr serif">2025–26</span>
+            <span class="rl">ジャパン・クリニカルリード(炎症・免疫領域、研究開発)</span>
+            <span class="og">ファイザー株式会社</span>
+          </a>
+          <a href="#chapter-iii-ja" class="career-row">
+            <span class="yr serif">2022–26</span>
+            <span class="rl">メディカルアフェアーズ・サイエンティスト</span>
+            <span class="og">ファイザー株式会社</span>
+          </a>
+          <a href="#chapter-ii-ja" class="career-row">
+            <span class="yr serif">2021–22</span>
+            <span class="rl">後期研修医(再建・形成外科)</span>
+            <span class="og">東京大学 / 聖マリアンナ医科大学</span>
+          </a>
+          <a href="#chapter-i-ja" class="career-row">
+            <span class="yr serif">2019–21</span>
+            <span class="rl">初期研修医(外科プログラム)</span>
+            <span class="og">亀田メディカルセンター</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="wrap" style="margin-top:56px;">
+        <div class="chapter reveal" id="chapter-iii-ja">
+          <div class="chap-label serif">第三章</div>
+          <h3>ファイザー株式会社</h3>
+          <div class="loc">東京、日本 — 2022–2026</div>
+
+          <div class="role">ジャパン・クリニカルリード、炎症・免疫領域 研究開発部門(2025–2026)</div>
+          <p class="role-summary">皮膚科・呼吸器領域における7件のグローバル臨床試験を、初期フェーズ1から申請前フェーズ3まで統括。全マイルストーンを遅延なく達成。</p>
+          <div class="chip-row">
+            <span class="stat-chip blue">試験7件</span>
+            <span class="stat-chip green">15名体制のチーム</span>
+            <span class="stat-chip blue">遅延ゼロ</span>
+          </div>
+          <details class="chapter-detail">
+            <summary>詳細を見る</summary>
+            <ul class="bullets">
+              <li>メディカルアフェアーズから研究開発部門への唯一の出向者としてジャパン・クリニカルリードを務め、皮膚科・呼吸器領域における7件のグローバル臨床試験(初期フェーズ1〜申請前フェーズ3)を統括。15名規模の部門横断チームを率いて日々の実行と課題解決をリードし、全試験でマイルストーンの遅延ゼロを達成。</li>
+              <li>関節リウマチ・ループスにおける3つのパイプラインのフェーズ1戦略を統括すると同時に、2領域にまたがるファースト・イン・クラスの三重特異性抗体についてフェーズ2試験およびフェーズ3施設戦略を主導し、新たな喘息・COPD領域への参入を実現。プログラムをフェーズ3本格展開まで推進。</li>
+              <li>メディカルアフェアーズのプロダクトリードとして、既承認の円形脱毛症治療薬を新たな患者集団へ適応拡大するためのフェーズ3計画と部門横断的な承認戦略を主導し、グローバルのメディカルアフェアーズと研究開発戦略の整合性を確保。</li>
+              <li>グローバル研究開発部門と連携して多施設共同試験を分析し、医師報告と企業報告の間の齟齬を特定。評価プロトコルを再設計し、日本国内全施設のデータ完全性を回復。</li>
+            </ul>
+          </details>
+
+          <div class="role" style="margin-top:36px;">メディカルアフェアーズ・サイエンティスト、プロダクト教育・メディカル戦略担当、皮膚科部門(2022–2026)</div>
+          <p class="role-summary">チームの実行体制を再構築し、40名規模の部門全体のAI導入を主導。会議時間を50%削減しながらプロジェクト産出量を3倍に。</p>
+          <div class="chip-row">
+            <span class="stat-chip green">760万ドル規模の戦略計画</span>
+            <span class="stat-chip blue">AI活用500%増</span>
+            <span class="stat-chip green">産出量3倍</span>
+          </div>
+          <details class="chapter-detail">
+            <summary>詳細を見る</summary>
+            <ul class="bullets">
+              <li>医薬品開発における唯一のプロダクトリード兼医師代表として、研究開発・営業部門とともにフェーズ2/3試験設計および市場戦略に臨床的知見を提供。15名以上のシニア関係者の中で最年少として参画。</li>
+              <li>チームの運営モデルを再構築し、当事者意識とデータドリブンな実行を推進。会議時間を50%削減し、プロジェクト産出量を3倍に拡大。760万ドル規模の年間戦略計画にも貢献。</li>
+              <li>テックチームと共に7名規模のデジタルトランスフォーメーション施策を共同リードし、40名規模の部門におけるAI導入戦略を再設計。AI活用率を500%向上させ、一人当たり1日1時間以上の時間削減を実現。後にファイザー・ジャパンの事例としてグローバルAIリーダーシップに紹介された。</li>
+              <li>売上10億ドル超のポテンシャルを持つファースト・イン・クラス製品のメディカルローンチ戦略を主導。30名以上の営業担当者へのブリーフィングと、5つの大学薬事委員会との関係構築を通じて、早期の市場浸透を後押し。</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="chapter reveal" id="chapter-ii-ja">
+          <div class="chap-label serif" style="color:var(--accent-2);">第二章</div>
+          <h3 style="font-size:clamp(1.3rem,3vw,1.9rem);">東京大学医学部附属病院 / 聖マリアンナ医科大学病院</h3>
+          <div class="loc">東京・神奈川、日本 — 2021–2022</div>
+          <div class="role">後期研修医、再建・形成外科</div>
+          <p class="role-summary">4名の1年目レジデントの中で唯一、技術力と冷静な判断力を評価され、乳児の足の再建手術の執刀医に選出。</p>
+          <div class="chip-row">
+            <span class="stat-chip green">1年目唯一の選出</span>
+            <span class="stat-chip blue">医師10名への導入</span>
+          </div>
+          <details class="chapter-detail">
+            <summary>詳細を見る</summary>
+            <ul class="bullets">
+              <li>通常は経験3年以上のレジデントが担う乳児の足の再建手術の執刀医に、4名の1年目レジデントの中で唯一選出。技術的精度、冷静な判断力、緊急対応力が評価された。</li>
+              <li>病棟記録の不統一による患者安全上の課題を特定し、新しいカルテ記録システムを設計。シニア医師10名への完全導入を主導し、入院患者の安全コンプライアンス全体を改善。</li>
+            </ul>
+          </details>
+        </div>
+
+        <div class="chapter reveal" id="chapter-i-ja">
+          <div class="chap-label serif">第一章</div>
+          <h3>亀田総合病院</h3>
+          <div class="loc">千葉、日本 — 2019–2021</div>
+          <div class="role">初期研修医、外科プログラム</div>
+          <p class="role-summary">人口11万人を対象とする救急医療において15名体制の最前線チームを率い、1年目レジデント25名の指導を担当。</p>
+          <div class="chip-row">
+            <span class="stat-chip blue">対象人口11万人</span>
+            <span class="stat-chip green">指導レジデント25名</span>
+          </div>
+          <details class="chapter-detail">
+            <summary>詳細を見る</summary>
+            <ul class="bullets">
+              <li>1ヶ月のローテーション期間中、15名体制の救急最前線チームを率い、1日あたり救急車8台以上・自己来院患者20名以上に対応。人口11万人を抱える、人的資源が限られた高負荷環境での勤務。</li>
+              <li>1年目の初期研修医25名を指導。個々のニーズに合わせた指導を行い、有能な医師への成長を支援。</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="education-ja" class="light alt" data-lang="ja" hidden>
+      <div class="wrap reveal">
+        <span class="kicker">— 学歴</span>
+        <h2 class="display">学歴</h2>
+
+        <div class="edu-card" id="chapter-mba-ja">
+          <span class="tag">MBA・2028年</span>
+          <h3>カリフォルニア大学バークレー校 — ハース経営大学院</h3>
+          <div class="degree">経営学修士(MBA)</div>
+        </div>
+
+        <div class="edu-card">
+          <span class="tag" style="color:var(--accent-2);">医学士・2019年</span>
+          <h3>奈良県立医科大学</h3>
+          <div class="degree">医学士 — 奈良県橿原市</div>
+          <ul class="bullets">
+            <li>医学部長の承認を得て、MIT・ハーバード大学ブロード研究所(化学生物学・治療科学プログラム)における前例のない1ヶ月間の研究インターンシップを実現(2016年)。</li>
+            <li>インペリアル・カレッジ・ロンドン附属チェルシー&amp;ウェストミンスター病院にて、希少疾患(嚢胞性線維症)診療の1ヶ月間の臨床実習を修了(2018年)。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="light" data-lang="ja" hidden>
+      <div class="wrap reveal">
+        <span class="kicker">— プロフェッショナルを超えて</span>
+        <h2 class="display">その他</h2>
+        <div class="chip-grid" style="margin-top:44px;">
+          <div class="chip">
+            <h3>資格・免許</h3>
+            <p>キングス・カレッジ・ロンドン Medicines Development Program メディカルアフェアーズ認定コースに日本人として唯一選出。医師免許(厚生労働省、2019年)・USMLE Step 1合格(2019年)。</p>
+          </div>
+          <div class="chip">
+            <h3 style="color:var(--accent-2);">言語</h3>
+            <p>日本語(母語)・英語(流暢) — 米国カリフォルニア州・ニュージャージー州在住歴10年以上。</p>
+          </div>
+          <div class="chip">
+            <h3>バイオリン</h3>
+            <p>バイオリン歴25年以上。複数のオーケストラでコンサートマスターを経験(SDユースオーケストラ、奈良ジュニアオーケストラ)。</p>
+          </div>
+          <div class="chip">
+            <h3 style="color:var(--accent-2);">興味・関心</h3>
+            <p>印象派美術、デザイン、サッカー、ダンス。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="connect-ja" class="dark footer-hero" data-lang="ja" hidden>
+      <div class="wrap">
+        <span class="kicker" style="text-align:center;">— お問い合わせ</span>
+        <h2 class="serif" style="text-align:center;">お問い合わせ</h2>
+        <div class="contact-links">
+          <a href="mailto:shion_kiguchi@berkeley.edu">メール</a>
+          <a href="https://linkedin.com/in/shion-kiguchi-53530b235" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <p class="contact-hint">お気軽にご連絡ください</p>
+      </div>
+      <div class="wrap bottom-row" style="justify-content:center;">
+        <span class="copy">&copy; 2026 Shion Kiguchi — サイトは下書きです。内容は最終確認前です。</span>
       </div>
     </section>
 
@@ -609,10 +935,8 @@
   }, {root: document.getElementById('scroll-area'), threshold: 0.15});
   document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
 
-  // click-and-drag to "flip through" the capability strip on desktop
-  (function(){
-    var strip = document.getElementById('cap-grid');
-    if(!strip) return;
+  // click-and-drag to "flip through" each capability strip on desktop
+  document.querySelectorAll('.cap-grid').forEach(function(strip){
     var isDown = false, startX, scrollStart;
     strip.addEventListener('mousedown', function(e){
       isDown = true; startX = e.pageX; scrollStart = strip.scrollLeft;
@@ -623,7 +947,35 @@
       e.preventDefault();
       strip.scrollLeft = scrollStart - (e.pageX - startX);
     });
-  })();
+  });
+
+  // interactive dotted-ring cursor ripple inside each hero
+  document.querySelectorAll('.hero').forEach(function(hero){
+    var ripple = hero.querySelector('.mouse-ripple');
+    if(!ripple) return;
+    hero.addEventListener('mousemove', function(e){
+      var rect = hero.getBoundingClientRect();
+      ripple.style.left = (e.clientX - rect.left) + 'px';
+      ripple.style.top = (e.clientY - rect.top) + 'px';
+      ripple.classList.add('active');
+    });
+    hero.addEventListener('mouseleave', function(){
+      ripple.classList.remove('active');
+    });
+  });
+
+  // EN / 日本語 toggle — shows/hides every matching data-lang block
+  var currentLang = 'en';
+  function setLang(lang){
+    currentLang = lang;
+    document.querySelectorAll('[data-lang="en"]').forEach(function(el){ el.hidden = (lang !== 'en'); });
+    document.querySelectorAll('[data-lang="ja"]').forEach(function(el){ el.hidden = (lang !== 'ja'); });
+  }
+  document.querySelectorAll('.lang-toggle-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      setLang(currentLang === 'en' ? 'ja' : 'en');
+    });
+  });
 </script>
 
 </body>
